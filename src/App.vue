@@ -15,5 +15,8 @@ export default {
 </script>
 
 <style lang="scss">
-
+#app {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
 </style>
