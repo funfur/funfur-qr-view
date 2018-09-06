@@ -1,12 +1,9 @@
 <template lang="pug">
   div#detail
     div.detail__container
-      div.detail__each(
-        v-for="(value, key) in companyInfo"
-        :key="key"
-      )
-        h3.detail__each--title {{value.name}}
-        p.detail__each--text {{value.email}}
+      div.detail__each
+        h3.detail__each--title {{ companyInfo }}
+        //- p.detail__each--text {{ companyInfo.makers_name }}
 </template>
 
 <script>
@@ -15,17 +12,25 @@ import {globalVar} from '../globalVar'
 
 export default {
   name: 'detail',
+
   data () {
     return {
       companyInfo: []
     }
   },
+
   mounted () {
+    let baseURI = 'https://api.mockaroo.com/api/d07561b0?count=1&key='
     axios
-      .get(process.env.BASE_URI + '/users')
+      .get(baseURI + process.env.API_KEY, {
+        transformResponse: (req) => {
+          return req
+        },
+        responseType: 'json'
+      })
       .then(response => {
         this.companyInfo = response.data
-        // console.log(response)
+        console.log(this.companyInfo)
       })
   }
 }

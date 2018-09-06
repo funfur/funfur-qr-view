@@ -23,7 +23,12 @@ export default {
     }
   },
   mounted () {
-
+    axios
+      .get()
+      .then(response => {
+        // this.heroImg = response.data
+        // console.log(response)
+      })
   }
 }
 </script>
